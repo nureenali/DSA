@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
+
         vector<int> ans;
 
         int start = 0;
@@ -16,22 +17,38 @@ public:
     }
 
     int binary(vector<int>& nums, int start, int end, int target, bool findFirst) {
+
         int pos = -1;
 
         while (start <= end) {
-            int mid = start + (end - start) / 2;
+
+            int mid = (start + end) / 2;
 
             if (nums[mid] == target) {
-                pos = mid;
 
-                if (findFirst)
+                if (findFirst) {
+
+                    if (mid == 0 || nums[mid - 1] != target) {
+                        return mid;
+                    }
+
                     end = mid - 1;
-                else
+                }
+
+                else {
+
+                    if (mid == nums.size() - 1 || nums[mid + 1] != target) {
+                        return mid;
+                    }
+
                     start = mid + 1;
+                }
             }
+
             else if (target < nums[mid]) {
                 end = mid - 1;
             }
+
             else {
                 start = mid + 1;
             }
