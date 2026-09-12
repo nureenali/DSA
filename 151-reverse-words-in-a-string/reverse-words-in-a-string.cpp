@@ -1,34 +1,46 @@
+  
+
 class Solution {
 public:
+    // Function to reverse the order of words 
     string reverseWords(string s) {
-        int n = s.size();
-
-        // Remove extra spaces
-        string temp;
-        for (int i = 0; i < n; i++) {
-            if (s[i] != ' ' || (i > 0 && s[i - 1] != ' ')) {
-                temp += s[i];
+        // Result string to store final output
+        string result = "";
+        
+        // Pointer starting from the last character
+        int i = s.size() - 1;
+        
+        // Traverse string from right to left
+        while (i >= 0) {
+            // Skip spaces at the current position
+            while (i >= 0 && s[i] == ' ') {
+                i--;
             }
-        }
-
-        if (!temp.empty() && temp.back() == ' ')
-            temp.pop_back();
-
-        s = temp;
-
-        // Reverse the whole string
-        reverse(s.begin(), s.end());
-
-        // Reverse every individual word
-        int start = 0;
-
-        for (int i = 0; i <= s.size(); i++) {
-            if (i == s.size() || s[i] == ' ') {
-                reverse(s.begin() + start, s.begin() + i);
-                start = i + 1;
+            
+            // If pointer is out of bounds, break
+            if (i < 0) break;
+            
+            // Mark the end of the current word
+            int end = i;
+            
+            // Move left until a space or start of string is found
+            while (i >= 0 && s[i] != ' ') {
+                i--;
             }
+            
+            // Extract the current word
+            string word = s.substr(i + 1, end - i);
+            
+            // Add space before appending next word if result is not empty
+            if (!result.empty()) {
+                result += " ";
+            }
+            
+            // Append the word to the result
+            result += word;
         }
-
-        return s;
+        
+        return result;
     }
 };
+
