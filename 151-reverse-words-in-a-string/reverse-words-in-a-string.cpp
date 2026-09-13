@@ -6,7 +6,7 @@ public:
     string reverseWords(string s) {
         // Result string to store final output
         string result = "";
-        
+         
         // Pointer starting from the last character
         int i = s.size() - 1;
         
