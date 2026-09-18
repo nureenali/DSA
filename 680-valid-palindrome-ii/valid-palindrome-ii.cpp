@@ -23,17 +23,17 @@ public:
         return true;
     }
 
-    bool validPalindrome(string s) {
+    bool validPalindrome(string s) 
+    {
 
-        if (pain(s)) {
+        if (pain(s)) 
+        {
             return true;
         }
 
         // Save original mismatch
         int left = index_left;
         int right = index_right;
-
-        cout << left << " " << right << endl;
 
         // Remove LEFT
         string temp = s.substr(0, left) + s.substr(left + 1);
