@@ -1,30 +1,19 @@
 class Solution {
 public:
-    vector<vector<int>> result;
-    vector<int> current;
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> result;
+        result.push_back({});
 
-    void solve(vector<int>& nums, int index) {
+        for (int i = 0; i < nums.size(); i++) {
+            int size = result.size();
 
-        // Base case
-        if (index == nums.size()) {
-            result.push_back(current);
-            return;
+            for (int j = 0; j < size; j++) {
+                vector<int> temp = result[j];
+                temp.push_back(nums[i]);
+                result.push_back(temp);
+            }
         }
 
-        // Choice 1: Exclude the current element
-        solve(nums, index + 1);
-
-        // Choice 2: Include the current element
-        current.push_back(nums[index]);
-
-        solve(nums, index + 1);
-
-        // Backtrack: Remove the current element
-        current.pop_back();
-    }
-
-    vector<vector<int>> subsets(vector<int>& nums) {
-        solve(nums, 0);
         return result;
     }
 };
