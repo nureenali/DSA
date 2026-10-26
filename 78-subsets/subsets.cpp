@@ -1,19 +1,31 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> result;
-        result.push_back({});
+void solve (vector<int>& nums, int i, vector<int>&currarr, vector<vector<int>>&res)
 
-        for (int i = 0; i < nums.size(); i++) {
-            int size = result.size();
-
-            for (int j = 0; j < size; j++) {
-                vector<int> temp = result[j];
-                temp.push_back(nums[i]);
-                result.push_back(temp);
-            }
+{
+        if (i==nums.size())
+        {
+            res.push_back(currarr);
+            return ;
         }
 
-        return result;
+        //include 
+        currarr.push_back(nums[i]);
+        solve (nums,i+1,currarr,res);
+        
+        //exclude
+        currarr.pop_back();
+
+         solve (nums,i+1,currarr,res);
+        
+
+
+}
+    vector<vector<int>> subsets(vector<int>& nums) {
+    vector<vector<int>> result ;
+    vector <int> current_arry;
+
+    solve (nums, 0, current_arry, result);
+    return result;      
     }
 };
