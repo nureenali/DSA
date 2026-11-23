@@ -3,7 +3,7 @@ public:
     bool wordPattern(string pattern, string s) {
         unordered_map<char, string> m1; // character -> word
         unordered_map<string, char> m2; // word -> character
-        int itr = 0;
+        int k = 0;
         int word_cnt = 0;
         
         for (int i = 0; i < s.size(); i++) {
@@ -22,11 +22,11 @@ public:
             word_cnt++;
             
             // If words exceed pattern length, return false
-            if (itr >= pattern.size()) {
+            if (k >= pattern.size()) {
                 return false;
             }
             
-            char c = pattern[itr];
+            char c = pattern[k];
             
             // Check if character already maps to a different word
             if (m1.find(c) != m1.end() && m1[c] != str) {
@@ -40,7 +40,7 @@ public:
             // Establish bidirectional mapping
             m1[c] = str;
             m2[str] = c;
-            itr++;
+            k++;
         }
         
         // Ensure total words equal pattern length
